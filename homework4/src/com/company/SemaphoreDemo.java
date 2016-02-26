@@ -4,7 +4,7 @@ package com.company;
 //The first one tests a binary semaphore with 5 threads each acquiring and releasing permits
 //and the second one uses a semaphore with a resource pool of 100 with 5 threads grabbing 40
 //permits each, this tests wait for .2 seconds before releasing to show more waiting of the
-//semaphore structure
+//semaphore structure.
 public class SemaphoreDemo {
 
     //Semaphores
