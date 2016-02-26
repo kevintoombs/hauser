@@ -27,11 +27,17 @@ public class Semaphore {
     //This method allows for a thread to attempt to grab input.n permits from the semaphore
     //If enough aren't available then it waits for other threads to run until resources are
     //available.
+    //There are two reasons why acquire(n) isn't implemented as acquire() multiple times.
+    //The first is trivial, acquire() is implemented as acquire(1). Stack overflow anyone?
+    //The second actually has to do with concurrency. If we acquired permits one at a time,
+    //then we could run into the situation where a thread wants 20 permits, gets 12, then can't
+    //acquire anymore and just holds onto those 12 and waits for more to be free, instead of those
+    //12 going to other thread(s) that can actually use them.
     public synchronized int acquire(int n){
         //Basic error catching. This came about because I was trying to find a bug in my code.
         //Not actually part of the implementation.
         if (n > maxPermits){
-            System.out.println("ERROR: Trying to acquire more permits than available");
+            System.out.println("ERROR: Trying to acquire more permits than ever available");
             return 1;
         }
 
@@ -40,6 +46,7 @@ public class Semaphore {
         //permits from the pool
         while(n > permits){
             try {
+                System.out.println("Thread " + Thread.currentThread().getId() + " waiting.");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -65,6 +72,7 @@ public class Semaphore {
 
         //The following lines remove input.n permits and then notify waiting threads
         permits += n;
+        System.out.println("Thread " + Thread.currentThread().getId() + " notifying other threads.");
         notifyAll();
 
         return 0;

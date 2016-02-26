@@ -23,6 +23,7 @@ public class CountDownLatch {
         counter--;
         if (counter == 0)
         {
+            System.out.println("Thread " + Thread.currentThread().getId() + " notifying other threads.");
             notifyAll();
         }
         return;
@@ -34,6 +35,7 @@ public class CountDownLatch {
     {
         while(counter > 0){
             try {
+                System.out.println("Thread " + Thread.currentThread().getId() + " waiting.");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -5,9 +5,9 @@ public class Main {
 
     public static void main(String[] args) {
         SemaphoreDemo.main(args);
-        //CountDownLatchDemo.main(args);
-        //MailboxDemo.main(args);
-        //CyclicBarrierDemo.main(args);
+        CountDownLatchDemo.main(args);
+        MailboxDemo.main(args);
+        CyclicBarrierDemo.main(args);
     }
 
 }

@@ -36,6 +36,7 @@ public class CyclicBarrier {
         counter --;
         while(counter > 0){
             try {
+                System.out.println("Thread " + Thread.currentThread().getId() + " waiting.");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -44,6 +45,7 @@ public class CyclicBarrier {
 
         //The last thread to hit the barrier will then call this (so will all following threads, unnecesarrily) so
         //that the other threads can proceed
+        System.out.println("Thread " + Thread.currentThread().getId() + " notifying other threads.");
         notifyAll();
 
         //Before I had these lines, I just reset counter here and that causes the first thread to get here

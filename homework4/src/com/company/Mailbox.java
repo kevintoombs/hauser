@@ -17,12 +17,14 @@ public class Mailbox {
     public synchronized void put (String in) {
         while (message != null){
             try {
+                System.out.println("Thread " + Thread.currentThread().getId() + " waiting to put.");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         this.message = in;
+        System.out.println("Thread " + Thread.currentThread().getId() + " notifying other threads.");
         notifyAll();
     }
 
@@ -33,6 +35,7 @@ public class Mailbox {
     public synchronized String take () {
         while (message == null){
             try {
+                System.out.println("Thread " + Thread.currentThread().getId() + " waiting to take.");
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -40,6 +43,7 @@ public class Mailbox {
         }
         String s = message;
         message = null;
+        System.out.println("Thread " + Thread.currentThread().getId() + " notifying other threads.");
         notifyAll();
         return s;
     }
