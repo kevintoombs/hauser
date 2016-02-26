@@ -1,5 +1,6 @@
 package com.company;
 
+//This class runs two tests on semaphore 
 public class SemaphoreDemo {
 
     static Semaphore s1 = new Semaphore(1);
@@ -69,14 +70,11 @@ public class SemaphoreDemo {
     static class Test2 implements Runnable {
         public void run(){
             System.out.println(Thread.currentThread().getId() + ": trying to acquire 40 permits.");
-            synchronized (acquireLock) {
-                s2.acquire(40);
-                System.out.println(Thread.currentThread().getId() + ": acquired 40 permits.");
-            }
-            synchronized (releaseLock) {
-                s2.release(40);
-                System.out.println(Thread.currentThread().getId() + ": released 40 permits.");
-            }
+            s2.acquire(40);
+            System.out.println(Thread.currentThread().getId() + ": acquired 40 permits.");
+            s2.release(40);
+            System.out.println(Thread.currentThread().getId() + ": released 40 permits.");
+
         }
     }
 }
