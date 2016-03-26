@@ -12,7 +12,8 @@ public class SemaphoreDemo {
     static Semaphore s2 = new Semaphore(100);
 
     //Very simple test code. Make 5 threads, run 5 threads, wait for them. Repeat.
-    //The only difference is in the task passed to them.
+    //The only difference is in the task passed to them (and the second task has sleeps
+    //to show more concurrent fun).
     public static void main(String[] args) {
         Thread t1 = new Thread(new Test1());
         Thread t2 = new Thread(new Test1());
