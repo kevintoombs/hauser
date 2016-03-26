@@ -54,7 +54,7 @@ spawnProcess(_,A)->
 	
 %This ring2 function simply has the leader process shoot out all of its messages in some scheduler
 %determined speed so that the following processes can do the same. The only difference from thisis
-%and ring1 is that this uses the leaderProcess2 function tosend the messages. This is method 3 as 
+%and ring1 is that this uses the leaderProcess2 function tosend the messages. This is method 2 as 
 % described in the assignment. 
 ring2(NProcesses, NMsgs)->
 	statistics(runtime),
